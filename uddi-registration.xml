@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Step 3 — Simulated UDDI Registry Entry for the Stock Inquiry Service.
+
+  In a real enterprise environment this XML would be POSTed to a UDDI
+  registry (e.g. jUDDI, Apache Scout) using the publish API.  Here it
+  is provided as a documentation artefact showing the three required
+  UDDI structures: businessEntity, businessService, and bindingTemplate.
+-->
+<uddi:businessEntity xmlns:uddi="urn:uddi-org:api_v3"
+                     businessKey="uddi:auis.edu.iq:warehouse-systems">
+
+    <!-- 3.1 — Business Entity describing the publisher -->
+    <uddi:name xml:lang="en">AUIS Warehouse Systems</uddi:name>
+    <uddi:description xml:lang="en">
+        Regional warehouse operated by AUIS providing stock-availability
+        inquiry services to retail-store partners.
+    </uddi:description>
+    <uddi:contacts>
+        <uddi:contact useType="Technical Lead">
+            <uddi:personName>Warehouse IT Desk</uddi:personName>
+            <uddi:email>warehouse-it@auis.edu.iq</uddi:email>
+        </uddi:contact>
+    </uddi:contacts>
+
+    <uddi:businessServices>
+
+        <!-- 3.2 — Business Service describing the offering -->
+        <uddi:businessService
+                serviceKey="uddi:auis.edu.iq:stock-inquiry"
+                businessKey="uddi:auis.edu.iq:warehouse-systems">
+
+            <uddi:name xml:lang="en">Stock Inquiry</uddi:name>
+            <uddi:description xml:lang="en">
+                Returns the current quantity in stock for a given item name.
+            </uddi:description>
+
+            <uddi:bindingTemplates>
+
+                <!-- 3.3 — Binding Template with the live Access Point -->
+                <uddi:bindingTemplate
+                        bindingKey="uddi:auis.edu.iq:stock-inquiry:soap-binding"
+                        serviceKey="uddi:auis.edu.iq:stock-inquiry">
+
+                    <uddi:accessPoint useType="endPoint">
+                        https://YOUR-RENDER-APP.onrender.com/StockService
+                    </uddi:accessPoint>
+
+                    <uddi:tModelInstanceDetails>
+                        <uddi:tModelInstanceInfo tModelKey="uddi:uddi.org:wsdl:types">
+                            <uddi:instanceDetails>
+                                <uddi:overviewDoc>
+                                    <uddi:overviewURL useType="wsdlInterface">
+                                        https://YOUR-RENDER-APP.onrender.com/StockService?wsdl
+                                    </uddi:overviewURL>
+                                </uddi:overviewDoc>
+                            </uddi:instanceDetails>
+                        </uddi:tModelInstanceInfo>
+                    </uddi:tModelInstanceDetails>
+
+                </uddi:bindingTemplate>
+
+            </uddi:bindingTemplates>
+        </uddi:businessService>
+
+    </uddi:businessServices>
+</uddi:businessEntity>
